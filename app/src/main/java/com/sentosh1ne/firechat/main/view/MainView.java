@@ -5,5 +5,5 @@ package com.sentosh1ne.firechat.main.view;
  */
 
 public interface MainView {
-    void setNumberOfUsers();
+    void setNumberOfUsers(String numberOfUsers);
 }
