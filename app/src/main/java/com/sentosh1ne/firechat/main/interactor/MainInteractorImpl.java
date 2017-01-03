@@ -16,6 +16,7 @@ public class MainInteractorImpl implements MainInteractor {
     private final Firebase mFirebase = new Firebase("https://firechat-7e7ef.firebaseio.com/currentUsers");
     private final MainActivityPresenter mPresenter;
     private final String INTERACTOR_DEBUG = "INTERACTOR";
+
     public MainInteractorImpl(MainActivityPresenter presenter) {
         mPresenter = presenter;
     }

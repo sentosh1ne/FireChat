@@ -20,16 +20,16 @@ public class MainActivityPresenterImpl implements MainActivityPresenter {
 
     @Override
     public void receiveRequest() {
-
+        interactor.receiveRequest();
     }
 
     @Override
     public String getNumberOfUsers(long numberOfUsers) {
-        return null;
+        return "Online users: " + String.valueOf(numberOfUsers);
     }
 
     @Override
     public void sendNumberOfChildren(long number) {
-
+        mainView.setNumberOfUsers(getNumberOfUsers(number));
     }
 }
