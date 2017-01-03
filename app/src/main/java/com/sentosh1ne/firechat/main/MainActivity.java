@@ -1,4 +1,4 @@
-package com.sentosh1ne.firechat.login;
+package com.sentosh1ne.firechat.main;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
