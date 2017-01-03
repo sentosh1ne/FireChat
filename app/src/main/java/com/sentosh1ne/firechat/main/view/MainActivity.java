@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.firebase.client.Firebase;
 import com.sentosh1ne.firechat.R;
 import com.sentosh1ne.firechat.login.view.LoginActivity;
 import com.sentosh1ne.firechat.main.presenter.MainActivityPresenterImpl;
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStart() {
         super.onStart();
+        mPresenter = new MainActivityPresenterImpl(this);
+        mPresenter.receiveRequest();
     }
 
 
@@ -36,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Firebase.setAndroidContext(this);
+        setUI();
     }
 
 
@@ -52,5 +57,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void setNumberOfUsers(String numberOfUsers) {
         mUsersOnlineText.setText(numberOfUsers);
+    }
+
+    private void setUI() {
+        mLoginButton.setOnClickListener(this);
+        mRegisterButton.setOnClickListener(this);
     }
 }
