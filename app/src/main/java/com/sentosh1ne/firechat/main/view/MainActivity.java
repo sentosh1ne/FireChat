@@ -14,6 +14,7 @@ import com.sentosh1ne.firechat.main.presenter.MainActivityPresenterImpl;
 import com.sentosh1ne.firechat.register.view.RegisterActivity;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,MainView{
 
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ButterKnife.bind(this);
         setContentView(R.layout.activity_main);
         Firebase.setAndroidContext(this);
         setUI();
