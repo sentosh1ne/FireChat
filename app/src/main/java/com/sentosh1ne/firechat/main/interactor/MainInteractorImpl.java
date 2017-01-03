@@ -1,4 +1,4 @@
-package com.sentosh1ne.firechat.main.view;
+package com.sentosh1ne.firechat.main.interactor;
 
 import android.util.Log;
 
@@ -7,7 +7,6 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 import com.sentosh1ne.firechat.main.presenter.MainActivityPresenter;
-import com.sentosh1ne.firechat.main.presenter.MainActivityPresenterImpl;
 
 /**
  * Created by sentosh1ne on 03.01.2017.

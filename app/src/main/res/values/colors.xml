@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="white">#FFFFFF</color>
+    <color name="salmon">#c9c916</color>
+    <color name="black">#000000</color>
+    <color name="chat">#FFCCCC</color>
+    <color name="dgray">#444444</color>
 </resources>

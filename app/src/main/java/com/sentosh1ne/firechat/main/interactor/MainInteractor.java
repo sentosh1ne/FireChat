@@ -1,4 +1,4 @@
-package com.sentosh1ne.firechat.main.view;
+package com.sentosh1ne.firechat.main.interactor;
 
 /**
  * Created by sentosh1ne on 03.01.2017.
