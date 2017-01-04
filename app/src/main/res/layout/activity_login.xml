@@ -13,11 +13,11 @@
 
     <ImageView
         android:id="@+id/cobe_logo_image_view"
-        android:layout_width="40sp"
-        android:layout_height="40sp"
         android:layout_gravity="center"
         android:src="@drawable/firebase_ogo"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"
+        android:layout_width="300sp"
+        android:layout_height="50sp" />
 
     <TextView
         android:id="@+id/enter_your_username_text_view"
