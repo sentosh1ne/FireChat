@@ -7,13 +7,17 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 import com.sentosh1ne.firechat.main.presenter.MainActivityPresenter;
+import com.sentosh1ne.firechat.util.NetworkConstants;
 
 /**
  * Created by sentosh1ne on 03.01.2017.
  */
 
 public class MainInteractorImpl implements MainInteractor {
-    private final Firebase mFirebase = new Firebase("https://firechat-7e7ef.firebaseio.com/currentUsers");
+    private final Firebase mFirebase = new Firebase(
+            NetworkConstants.INSTANCE.getFireBaseURL() +
+            "currentUsers");
+
     private final MainActivityPresenter mPresenter;
     private final String INTERACTOR_DEBUG = "INTERACTOR";
 
