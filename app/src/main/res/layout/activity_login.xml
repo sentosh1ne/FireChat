@@ -12,7 +12,7 @@
     tools:context=".login.view.LoginActivity">
 
     <ImageView
-        android:id="@id/cobe_logo_image_view"
+        android:id="@+id/cobe_logo_image_view"
         android:layout_width="40sp"
         android:layout_height="40sp"
         android:layout_gravity="center"
@@ -55,7 +55,7 @@
         android:textColorHint="@color/white" />
 
     <Button
-        android:id="@id/login_button"
+        android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
