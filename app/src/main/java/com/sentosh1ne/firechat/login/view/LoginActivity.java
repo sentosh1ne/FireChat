@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         ButterKnife.bind(this);
         setContentView(R.layout.activity_login);
         setEvents();
+        mPresenter = new LoginPresenterImpl(this);
     }
 
     @Override
