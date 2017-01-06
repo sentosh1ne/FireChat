@@ -15,8 +15,9 @@ import com.sentosh1ne.firechat.register.view.RegisterActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener,MainView{
+public class MainActivity extends AppCompatActivity implements MainView{
 
     @BindView(R.id.current_number_of_users_text_view)
     TextView mUsersOnlineText;
@@ -46,15 +47,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    @Override
-    public void onClick(View view) {
-        if (view == mLoginButton) {
-            startActivity(new Intent(this, LoginActivity.class));
-        }
-        if (view == mRegisterButton) {
-            startActivity(new Intent(this, RegisterActivity.class));
-        }
+    @OnClick(R.id.login_button)
+    void loginUser(){
+        startActivity(new Intent(this, LoginActivity.class));
     }
+
+    @OnClick(R.id.register_button)
+    void startRegistration(){
+        startActivity(new Intent(this, RegisterActivity.class));
+    }
+
 
     @Override
     public void setNumberOfUsers(String numberOfUsers) {

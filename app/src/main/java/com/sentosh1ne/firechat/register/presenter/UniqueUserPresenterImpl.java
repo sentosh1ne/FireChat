@@ -1,6 +1,6 @@
 package com.sentosh1ne.firechat.register.presenter;
 
-import com.firebase.client.Firebase;
+
 import com.sentosh1ne.firechat.register.interactor.UniqueUserInteractor;
 import com.sentosh1ne.firechat.register.interactor.UniqueUserInteractorImpl;
 import com.sentosh1ne.firechat.register.view.UserFragmentView;
