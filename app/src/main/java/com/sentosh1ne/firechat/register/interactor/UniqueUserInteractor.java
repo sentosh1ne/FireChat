@@ -5,5 +5,5 @@ package com.sentosh1ne.firechat.register.interactor;
  */
 
 public interface UniqueUserInteractor {
-    boolean nameExists(String userName);
+    void nameExists(String userName);
 }

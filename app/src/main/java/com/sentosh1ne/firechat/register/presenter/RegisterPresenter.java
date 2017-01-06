@@ -9,4 +9,5 @@ public interface RegisterPresenter {
 
     void onFailed();
 
+    void onRequest(String userName,String email,String password,String avatar);
 }
