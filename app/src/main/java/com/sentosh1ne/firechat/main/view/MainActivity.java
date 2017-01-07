@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements MainView{
         ButterKnife.bind(this);
         setContentView(R.layout.activity_main);
         Firebase.setAndroidContext(this);
-        setUI();
     }
 
 
@@ -63,8 +62,5 @@ public class MainActivity extends AppCompatActivity implements MainView{
         mUsersOnlineText.setText(numberOfUsers);
     }
 
-    private void setUI() {
-        mLoginButton.setOnClickListener(this);
-        mRegisterButton.setOnClickListener(this);
-    }
+
 }
