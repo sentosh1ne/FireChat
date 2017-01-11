@@ -1,13 +1,14 @@
 package com.sentosh1ne.firechat.register.view;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -62,7 +63,7 @@ public class AvatarFragment extends Fragment implements AvatarFragmentView {
     private void toEmail(String emoji) {
         Bundle data = this.getArguments();
         data.putString("emoji", emoji);
-        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentManager manager = getActivity().getFragmentManager();
         manager.beginTransaction()
                 .replace(R.id.register_activity_frame_layout, EmailFragment.newInstance(data), "email")
                 .addToBackStack("email").commit();
@@ -72,5 +73,11 @@ public class AvatarFragment extends Fragment implements AvatarFragmentView {
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 5));
     }
 
+
+    public static Fragment newInstance(Bundle args) {
+        AvatarFragment fragment = new AvatarFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 }
 
