@@ -23,8 +23,8 @@ public class MessageInteractor {
     private final Query mMessageQuery;
 
 
-    public MessageInteractor(MessagePresenter pre) {
-        this.presenter = pre;
+    public MessageInteractor(MessagePresenter presenter) {
+        this.presenter = presenter;
         this.mMessageQuery = mMessagesRef.orderByValue().limitToLast(100);
     }
 
