@@ -23,13 +23,13 @@ import butterknife.OnClick;
 public class EmailFragment extends Fragment implements RegisterView {
 
     @BindView(R.id.progress_bar)
-    private ProgressBar mProgressBar;
+    ProgressBar mProgressBar;
     @BindView(R.id.login_email_edit_text)
-    private EditText mEmailEditText;
+    EditText mEmailEditText;
     @BindView(R.id.login_password_edit_text)
-    private EditText mPasswordEditText;
+    EditText mPasswordEditText;
     @BindView(R.id.register_button)
-    private Button mRegisterButton;
+    Button mRegisterButton;
 
     private RegisterPresenterImpl mPresenter;
 

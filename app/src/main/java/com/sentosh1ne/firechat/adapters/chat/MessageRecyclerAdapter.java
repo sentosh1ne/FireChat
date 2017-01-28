@@ -69,11 +69,11 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.message_author)
-        private TextView mAuthorTextView;
-        @BindView(R.id.message_author)
-        private TextView mMessageTextView;
+         TextView mAuthorTextView;
+        @BindView(R.id.message_value)
+         TextView mMessageTextView;
         @BindView(R.id.message_avatar)
-        private TextView mAvatarTextView;
+         TextView mAvatarTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
