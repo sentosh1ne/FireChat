@@ -61,7 +61,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.current_number_of_users_text_view)
-        private TextView mUserTextView;
+        TextView mUserTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
