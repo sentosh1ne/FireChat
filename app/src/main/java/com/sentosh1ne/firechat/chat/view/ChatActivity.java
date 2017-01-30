@@ -45,12 +45,12 @@ public class ChatActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         FragmentManager manager = getSupportFragmentManager();
         if (manager.getBackStackEntryCount() == 0){
-          manager.beginTransaction()
+            manager.beginTransaction()
                   .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                   .replace(R.id.chat_activity_frame_layout,new UserListFragment(),"users_list")
                   .commit();
         } else{
-
+            manager.popBackStack();
         }
         return super.onOptionsItemSelected(item);
     }

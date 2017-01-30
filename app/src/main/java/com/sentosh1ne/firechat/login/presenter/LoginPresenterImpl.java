@@ -19,16 +19,19 @@ public class LoginPresenterImpl implements LoginPresenter {
 
     @Override
     public void receiveUserLogin(String email, String password) {
-
+        loginView.spinProgressBar();
+        interactor.loginWithEmail(email,password);
     }
 
     @Override
     public void onFailed() {
-
+        loginView.onFailure();
+        loginView.stopProgressBar();
     }
 
     @Override
-    public void onSuccess(String userId, String user, String avatar) {
-
+    public void onSuccess(String userId, String username, String avatar) {
+        loginView.stopProgressBar();
+        loginView.logIn(username,userId,avatar);
     }
 }
