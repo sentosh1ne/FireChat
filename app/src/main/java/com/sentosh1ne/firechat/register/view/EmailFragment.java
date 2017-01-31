@@ -68,7 +68,7 @@ public class EmailFragment extends Fragment implements RegisterView {
 
     @Override
     public void stopProgressBar() {
-
+        mProgressBar.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.register_button)

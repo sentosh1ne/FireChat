@@ -1,8 +1,6 @@
 package com.sentosh1ne.firechat.chat.view;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,7 +17,6 @@ import com.sentosh1ne.firechat.chat.presenter.ChatMessagePresenter;
 import com.sentosh1ne.firechat.chat.presenter.ChatMessagePresenterImpl;
 
 import butterknife.BindView;
-import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 

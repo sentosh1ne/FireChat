@@ -42,7 +42,7 @@ public class LoginInteractorImpl implements LoginInteractor {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         User user = dataSnapshot.getValue(User.class);
-                        Firebase loggedUser = new Firebase(NetworkConstants.INSTANCE.getFireBaseURL() + authData.getUid()); //redundant?
+                        Firebase loggedUser = new Firebase(NetworkConstants.INSTANCE.getFireBaseURL() + authData.getUid());
                         loggedUser.setValue(createUser(user.getUserName(), user.getAvatar()));
                         mPresenter.onSuccess(user.getUserName(), authData.getUid(), user.getAvatar());
                     }
