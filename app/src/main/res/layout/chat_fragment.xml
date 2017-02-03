@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/chat"
+    android:background="@color/white"
     tools:context=".chat.view.ChatActivity">
 
     <android.support.v7.widget.RecyclerView
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="false"
-            android:background="@color/chat"
+            android:background="@color/colorAccent"
             android:src="@android:drawable/ic_menu_send"
             tools:ignore="ContentDescription" />
     </LinearLayout>

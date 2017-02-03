@@ -11,16 +11,24 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sentosh1ne.firechat.R;
+import com.sentosh1ne.firechat.adapters.user.UsersAdapter;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class UserListFragment extends Fragment {
 
 
+    @BindView(R.id.online_user_recycler_view)
+    private RecyclerView usersList;
+
+    private UsersAdapter adapter;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ButterKnife.bind(this,container);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -32,5 +40,14 @@ public class UserListFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        fillUpList();
     }
+
+    private void fillUpList() {
+        adapter = new UsersAdapter();
+        adapter.request();
+        usersList.setAdapter(adapter);
+    }
+
+
 }
