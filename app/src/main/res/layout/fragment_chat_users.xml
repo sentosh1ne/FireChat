@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView
@@ -13,7 +13,8 @@
         android:layout_margin="5sp"
         app:cardCornerRadius="2sp"
         app:cardElevation="5sp"
-        app:contentPadding="5sp">
+        app:contentPadding="5sp"
+        >
 
         <TextView
             android:layout_width="match_parent"
@@ -22,7 +23,8 @@
             android:gravity="center"
             android:text="@string/current_online_users_by_username"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            />
 
     </android.support.v7.widget.CardView>
 
@@ -31,5 +33,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/current_users_text_view"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        android:layout_marginTop="10dp"/>
 </RelativeLayout>

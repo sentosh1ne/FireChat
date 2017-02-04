@@ -5,14 +5,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16sp"
-    android:background="@color/colorPrimary">
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/cobe_logo_image_view"
-        android:layout_width="40sp"
-        android:layout_height="40sp"
+        android:layout_width="80sp"
+        android:layout_height="90sp"
         android:layout_gravity="center"
-        android:src="@drawable/firebase_ogo"
+        android:src="@drawable/firelogo"
         tools:ignore="ContentDescription" />
 
     <TextView
@@ -22,7 +22,7 @@
         android:layout_margin="5sp"
         android:gravity="center"
         android:text="@string/choose_an_awesome_user_by_which_we_will_recognize_you"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20sp" />
 
     <EditText
@@ -32,7 +32,7 @@
         android:layout_gravity="center"
         android:hint="@string/e_g_username"
         android:inputType="textEmailAddress"
-        android:textColorHint="@color/white" />
+        android:textColorHint="@color/black" />
 
     <Button
         android:id="@+id/continue_button"
@@ -40,5 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="15dp"
         android:text="@string/continue_with_register" />
 </LinearLayout>

@@ -5,7 +5,7 @@ package com.sentosh1ne.firechat.register.presenter;
  */
 
 public interface UniqueUserPresenter {
-    void ifAlreadyExists(String username);
+    void nameExists(String username);
     void onExists();
     void onAbscent();
 }

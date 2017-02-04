@@ -20,7 +20,7 @@ public class UniqueUserPresenterImpl implements UniqueUserPresenter {
     }
 
     @Override
-    public void ifAlreadyExists(String username) {
+    public void nameExists(String username) {
         mInteractor.nameExists(username);
     }
 

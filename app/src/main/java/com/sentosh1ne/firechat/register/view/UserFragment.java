@@ -65,6 +65,6 @@ public class UserFragment extends Fragment implements UserFragmentView{
 
     @OnClick(R.id.continue_button)
     public void onContinue(){
-        mPresenter.ifAlreadyExists(mUsernameEditText.getText().toString());
+        mPresenter.nameExists(mUsernameEditText.getText().toString());
     }
 }
