@@ -48,8 +48,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
-    public void logIn(String username, String uid, String emoji) {
-        User user = new User(username,uid,emoji);
+    public void logIn(String username, String uid, String avatar) {
+        User user = new User(username,uid,avatar);
         Intent i = new Intent(this,ChatActivity.class);
         i.putExtra("credentials",NetworkConstants.INSTANCE.getGson().toJson(user));
     }

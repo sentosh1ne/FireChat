@@ -67,6 +67,6 @@ public class ChatFragment extends Fragment {
         mMessageBodyText.setText("");
         mChatRecyclerView.scrollToPosition(mChatRecyclerView.getBottom());
     }
-    // TODO: Rename parameter arguments, choose names that match
+
 
 }

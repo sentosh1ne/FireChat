@@ -11,7 +11,7 @@ import com.sentosh1ne.firechat.main.view.MainView;
 public class MainActivityPresenterImpl implements MainActivityPresenter {
 
     private final MainView mainView;
-    private final MainInteractorImpl interactor;
+    private final MainInteractor interactor;
 
     public MainActivityPresenterImpl(MainView mainView) {
         this.mainView = mainView;
