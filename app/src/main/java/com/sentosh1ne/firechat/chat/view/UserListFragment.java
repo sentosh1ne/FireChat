@@ -17,7 +17,7 @@ public class UserListFragment extends Fragment {
 
 
     @BindView(R.id.online_user_recycler_view)
-    private RecyclerView usersList;
+    RecyclerView usersList;
 
     private UsersAdapter adapter;
 

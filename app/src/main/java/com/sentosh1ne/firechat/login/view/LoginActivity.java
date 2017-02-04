@@ -1,6 +1,7 @@
 package com.sentosh1ne.firechat.login.view;
 
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.firebase.client.Firebase;
 import com.sentosh1ne.firechat.R;
 import com.sentosh1ne.firechat.chat.view.ChatActivity;
 import com.sentosh1ne.firechat.login.presenter.LoginPresenterImpl;
@@ -20,7 +22,8 @@ import pojos.User;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener,LoginView{
 
-    @BindView(R.id.progress_bar)
+    @BindView(R.id.progress_bar_login)
+    @Nullable
     ProgressBar mProgressBar;
     @BindView(R.id.login_email_edit_text)
     EditText mEmailEditText;
@@ -34,8 +37,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
         setContentView(R.layout.activity_login);
+        ButterKnife.bind(this);
+        Firebase.setAndroidContext(this);
         setEvents();
         mPresenter = new LoginPresenterImpl(this);
     }

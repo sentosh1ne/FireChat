@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity implements MainView{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         Firebase.setAndroidContext(this);
     }
 
