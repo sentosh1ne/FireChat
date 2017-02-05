@@ -56,6 +56,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         User user = new User(username,uid,avatar);
         Intent i = new Intent(this,ChatActivity.class);
         i.putExtra("credentials",NetworkConstants.INSTANCE.getGson().toJson(user));
+        startActivity(i);
     }
 
     @Override

@@ -20,6 +20,7 @@ import com.sentosh1ne.firechat.R;
 import com.sentosh1ne.firechat.adapters.register.AvatarAdapter;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class AvatarFragment extends Fragment implements AvatarFragmentView {
@@ -37,6 +38,14 @@ public class AvatarFragment extends Fragment implements AvatarFragmentView {
     public void onStart() {
         super.onStart();
         setList();
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_avatar, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
@@ -60,13 +69,14 @@ public class AvatarFragment extends Fragment implements AvatarFragmentView {
         dialog.show();
     }
 
-    private void toEmail(String emoji) {
+    private void toEmail(String avatar) {
         Bundle data = this.getArguments();
-        data.putString("emoji", emoji);
+        data.putString("avatar", avatar);
         FragmentManager manager = getActivity().getFragmentManager();
         manager.beginTransaction()
                 .replace(R.id.register_activity_frame_layout, EmailFragment.newInstance(data), "email")
-                .addToBackStack("email").commit();
+                .addToBackStack("email")
+                .commit();
     }
 
     private void setList(){

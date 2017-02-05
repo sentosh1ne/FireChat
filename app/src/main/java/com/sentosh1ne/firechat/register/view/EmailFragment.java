@@ -18,6 +18,7 @@ import com.sentosh1ne.firechat.register.presenter.RegisterPresenterImpl;
 
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class EmailFragment extends Fragment implements RegisterView {
@@ -47,7 +48,9 @@ public class EmailFragment extends Fragment implements RegisterView {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_email, container, false);
+        View view = inflater.inflate(R.layout.fragment_email, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
