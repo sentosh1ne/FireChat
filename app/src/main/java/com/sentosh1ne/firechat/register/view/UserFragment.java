@@ -37,6 +37,7 @@ public class UserFragment extends Fragment implements UserFragmentView{
         View view = inflater.inflate(R.layout.fragment_user, container, false);
         ButterKnife.bind(this, view);
         return view;
+        
     }
 
     @Override
