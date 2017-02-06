@@ -25,9 +25,9 @@ public class EmailFragment extends Fragment implements RegisterView {
 
     @BindView(R.id.progress_bar)
     ProgressBar mProgressBar;
-    @BindView(R.id.login_email_edit_text)
+    @BindView(R.id.reg_email_edit_text)
     EditText mEmailEditText;
-    @BindView(R.id.login_password_edit_text)
+    @BindView(R.id.reg_password_edit_text)
     EditText mPasswordEditText;
     @BindView(R.id.register_button)
     Button mRegisterButton;

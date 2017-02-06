@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import com.sentosh1ne.firechat.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by sentosh1ne on 10.01.2017.
  */
@@ -29,7 +32,7 @@ public class AvatarAdapter extends RecyclerView.Adapter<AvatarAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         String emoji = mAvatars[position];
-        holder.mEmojiTextView.setText(emoji);
+        holder.mAvatartTextView.setText(emoji);
     }
 
     @Override
@@ -38,17 +41,18 @@ public class AvatarAdapter extends RecyclerView.Adapter<AvatarAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView mEmojiTextView;
+        @BindView(R.id.choose_avatar_text)
+        TextView mAvatartTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            mEmojiTextView = (TextView) itemView.findViewById(R.id.choose_avatar_text);
-            mEmojiTextView.setOnClickListener(this);
+            ButterKnife.bind(this,itemView);
+            mAvatartTextView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            listener.onClick(mEmojiTextView.getText().toString());
+            listener.onClick(mAvatartTextView.getText().toString());
         }
     }
 }

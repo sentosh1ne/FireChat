@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.sentosh1ne.firechat.R;
+import com.sentosh1ne.firechat.register.presenter.UniqueUserPresenter;
 import com.sentosh1ne.firechat.register.presenter.UniqueUserPresenterImpl;
 
 import butterknife.BindView;
@@ -29,7 +30,7 @@ public class UserFragment extends Fragment implements UserFragmentView{
     @BindView(R.id.continue_button)
     Button mContinueButton;
 
-    private UniqueUserPresenterImpl mPresenter;
+    private UniqueUserPresenter mPresenter;
 
     @Nullable
     @Override
@@ -43,11 +44,13 @@ public class UserFragment extends Fragment implements UserFragmentView{
     @Override
     public void onStart() {
         super.onStart();
+        mPresenter = new UniqueUserPresenterImpl(this);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
     }
 
     @Override
@@ -70,7 +73,6 @@ public class UserFragment extends Fragment implements UserFragmentView{
 
     @OnClick(R.id.continue_button)
     public void onContinue(){
-        Log.i("Supertag","pressed");
         mPresenter.nameExists(mUsernameEditText.getText().toString());
     }
 }

@@ -1,7 +1,15 @@
 package com.sentosh1ne.firechat.register.interactor;
 
+import android.support.annotation.NonNull;
+import android.util.Log;
+
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.sentosh1ne.firechat.register.presenter.RegisterPresenter;
 import com.sentosh1ne.firechat.util.NetworkConstants;
 
@@ -13,7 +21,9 @@ import java.util.Map;
  */
 
 public class RegistartionInteractorImpl implements RegistrationInteractor {
-    private Firebase firebase = new Firebase(NetworkConstants.INSTANCE.getFireBaseUsers());
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    private Firebase ref = new Firebase(NetworkConstants.INSTANCE.getFireBaseUsers());
+
     private RegisterPresenter mPresenter;
 
     public RegistartionInteractorImpl(RegisterPresenter pre) {
@@ -22,20 +32,20 @@ public class RegistartionInteractorImpl implements RegistrationInteractor {
 
     @Override
     public void register(final String userName, String email, String password, final String avatar) {
-        firebase.createUser(email, password, new Firebase.ValueResultHandler<Map<String, Object>>() {
-            @Override
-            public void onSuccess(Map<String, Object> stringObjectMap) {
-                String uid = stringObjectMap.get("uid").toString();
-                firebase = new Firebase(NetworkConstants.INSTANCE.getFireBaseUsers() + uid);
-                firebase.setValue(mapUser(userName, avatar));
-                mPresenter.onSuccess();
-            }
-
-            @Override
-            public void onError(FirebaseError firebaseError) {
-                mPresenter.onFailed();
-            }
-        });
+       firebaseAuth
+               .createUserWithEmailAndPassword(email,password)
+               .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+           @Override
+           public void onComplete(@NonNull Task<AuthResult> task) {
+               if (task.isSuccessful()) {
+                   FirebaseUser user = task.getResult().getUser();
+                   ref.child(user.getUid()).setValue(mapUser(userName, avatar));
+                   mPresenter.onSuccess();
+               }else {
+                   mPresenter.onFailed();
+               }
+           }
+       });
     }
 
     @Override
@@ -45,4 +55,6 @@ public class RegistartionInteractorImpl implements RegistrationInteractor {
         user.put("avatar", avatar);
         return user;
     }
+
+
 }

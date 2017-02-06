@@ -18,12 +18,13 @@ import android.view.ViewGroup;
 
 import com.sentosh1ne.firechat.R;
 import com.sentosh1ne.firechat.adapters.register.AvatarAdapter;
+import com.sentosh1ne.firechat.adapters.register.OnAvatarClickListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class AvatarFragment extends Fragment implements AvatarFragmentView {
+public class AvatarFragment extends Fragment implements OnAvatarClickListener{
     @BindView(R.id.avatars_list)
     RecyclerView mRecyclerView;
 
@@ -37,6 +38,7 @@ public class AvatarFragment extends Fragment implements AvatarFragmentView {
     @Override
     public void onStart() {
         super.onStart();
+        mAvatarAdapter = new AvatarAdapter(this);
         setList();
     }
 
@@ -48,14 +50,32 @@ public class AvatarFragment extends Fragment implements AvatarFragmentView {
         return view;
     }
 
+
+    private void setList(){
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 5));
+        mRecyclerView.setAdapter(mAvatarAdapter);
+    }
+
+
+    public static Fragment newInstance(Bundle args) {
+        AvatarFragment fragment = new AvatarFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+
     @Override
-    public void showDialog(String username, String email, String password, final String avatar) {
+    public void onClick(String avatar) {
+        showDialog(avatar);
+    }
+
+    private void showDialog(final String avatar) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage("You chose: " + avatar + " , continue?");
         builder.setPositiveButton("Yeah!", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                toEmail(avatar);
+                continueToEmail(avatar);
             }
         });
         builder.setNegativeButton("Go back!", new DialogInterface.OnClickListener() {
@@ -69,25 +89,15 @@ public class AvatarFragment extends Fragment implements AvatarFragmentView {
         dialog.show();
     }
 
-    private void toEmail(String avatar) {
-        Bundle data = this.getArguments();
+    private void continueToEmail(String avatar) {
+        Bundle data = getArguments();
         data.putString("avatar", avatar);
-        FragmentManager manager = getActivity().getFragmentManager();
+        FragmentManager manager = getFragmentManager();
         manager.beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .replace(R.id.register_activity_frame_layout, EmailFragment.newInstance(data), "email")
                 .addToBackStack("email")
                 .commit();
-    }
-
-    private void setList(){
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 5));
-    }
-
-
-    public static Fragment newInstance(Bundle args) {
-        AvatarFragment fragment = new AvatarFragment();
-        fragment.setArguments(args);
-        return fragment;
     }
 }
 
