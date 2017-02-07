@@ -65,7 +65,6 @@ public class ChatFragment extends Fragment {
                         .getExtras()
                         .get("credentials"), User.class);
 
-        Log.i("USERNAME",user.toString());
         setList();
     }
 
@@ -74,7 +73,6 @@ public class ChatFragment extends Fragment {
     @OnClick(R.id.chat_send_button)
     void sendMessageOnClick(){
         String message = mMessageBodyText.getText().toString();
-
         presenter.sendMessage(user.getUsername(), message, user.getAvatar());
         mMessageBodyText.setText("");
         mChatRecyclerView.scrollToPosition(mChatRecyclerView.getBottom());

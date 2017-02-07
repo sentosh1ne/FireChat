@@ -25,44 +25,18 @@ import pojos.User;
  */
 
 public class LoginInteractorImpl implements LoginInteractor {
-    private  Firebase mFirebase;
+    private Firebase mFirebase;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     private final LoginPresenter mPresenter;
 
-    public LoginInteractorImpl(LoginPresenter presenter){
+    public LoginInteractorImpl(LoginPresenter presenter) {
         mPresenter = presenter;
     }
 
-    public void loginWithEmail(String email, String password){
-        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    mFirebase = new Firebase(
-                            NetworkConstants.INSTANCE.getFireBaseURL() +
-                                    "users/" + firebaseAuth.getCurrentUser().getUid());
-                    mFirebase.addListenerForSingleValueEvent(new ValueEventListener() {
-
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            User user = NetworkConstants.INSTANCE.getGson().fromJson(dataSnapshot.getValue().toString(),User.class);
-                            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                            Log.i("ITISMYID", firebaseUser.getUid());
-                            Log.i("ITISMYID", user.toString());
-                            Firebase loggedUser = new Firebase(NetworkConstants.INSTANCE.getFireBaseURL() + firebaseUser.getUid());
-                            loggedUser.setValue(createUser(user.getUsername(), user.getAvatar()));
-                            mPresenter.onSuccess(firebaseUser.getUid(), user.getUsername(), user.getAvatar());
-                        }
-
-                        @Override
-                        public void onCancelled(FirebaseError firebaseError) {
-                            mPresenter.onFailed();
-                        }
-                    });
-                }
-            }
-        });
+    public void loginWithEmail(String email, String password) {
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(createOnCompleteListener());
     }
 
 
@@ -71,9 +45,40 @@ public class LoginInteractorImpl implements LoginInteractor {
         Map<String, Object> userToCreate = new HashMap<>();
         userToCreate.put("username", user);
         userToCreate.put("avatar", avatar);
-        Log.i("TESTMAP", userToCreate.get("username").toString());
         return userToCreate;
     }
 
+    private OnCompleteListener<AuthResult> createOnCompleteListener() {
+      return  new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    mFirebase = new Firebase(
+                            NetworkConstants.INSTANCE.getFireBaseURL() +
+                                    "users/" + firebaseAuth.getCurrentUser().getUid());
+                    mFirebase.addListenerForSingleValueEvent(createValueEventListener());
+                }
+            }
+        };
+    }
 
+    private ValueEventListener createValueEventListener(){
+       return new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User user = NetworkConstants.INSTANCE
+                        .getGson()
+                        .fromJson(dataSnapshot.getValue().toString(), User.class);
+
+                Firebase loggedUser = new Firebase(NetworkConstants.INSTANCE.getFireBaseURL() + user.getUid());
+                loggedUser.setValue(createUser(user.getUsername(), user.getAvatar()));
+                mPresenter.onSuccess(user.getUid(), user.getUsername(), user.getAvatar());
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                mPresenter.onFailed();
+            }
+        };
+    }
 }

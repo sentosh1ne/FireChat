@@ -34,8 +34,6 @@ public class MessageInteractor {
         mMessageQuery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Log.i("MESSAGE", dataSnapshot.getValue().toString());
-
                 presenter.sendMessageToAdapter(dataSnapshot.getValue(Message.class));
             }
 
