@@ -16,7 +16,7 @@ public class ChatMessageInteractorImpl implements ChatMessageInteractor {
     @Override
     public void push(String author, String message, String avatar) {
         Firebase firebase = new Firebase(NetworkConstants.INSTANCE.getFirebaseMessages());
-        firebase.push().setValue(mapMessage(author,message,avatar));
+        firebase.push().setValue(mapMessage(message, author, avatar));
     }
 
     @Override

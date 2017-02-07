@@ -49,7 +49,7 @@ public class LoginInteractorImpl implements LoginInteractor {
                             User user = NetworkConstants.INSTANCE.getGson().fromJson(dataSnapshot.getValue().toString(),User.class);
                             Firebase loggedUser = new Firebase(NetworkConstants.INSTANCE.getFireBaseURL() + firebaseAuth.getCurrentUser().getUid());
                             loggedUser.setValue(createUser(user.getUserName(), user.getAvatar()));
-                            mPresenter.onSuccess(user.getUserName(), firebaseAuth.getCurrentUser().getUid(), user.getAvatar());
+                            mPresenter.onSuccess(firebaseAuth.getCurrentUser().getUid(), user.getUserName(), user.getAvatar());
                         }
 
                         @Override

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import pojos.User;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener,LoginView{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, LoginView{
 
     @BindView(R.id.progress_bar_login)
     @Nullable
@@ -53,9 +54,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void logIn(String username, String uid, String avatar) {
-        User user = new User(username,uid,avatar);
+        User user = new User(username, uid, avatar);
         Intent i = new Intent(this,ChatActivity.class);
-        i.putExtra("credentials",NetworkConstants.INSTANCE.getGson().toJson(user));
+        String json = NetworkConstants.INSTANCE.getGson().toJson(user);
+        Log.i("JSON", json);
+        i.putExtra("credentials", json);
         startActivity(i);
     }
 

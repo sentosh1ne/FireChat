@@ -39,7 +39,7 @@ public class ChatFragment extends Fragment {
     ChatMessagePresenter presenter;
     MessageRecyclerAdapter adapter;
 
-    String userName;
+    User user;
 
     @Nullable
     @Override
@@ -59,7 +59,13 @@ public class ChatFragment extends Fragment {
     public void onStart() {
         super.onStart();
         presenter = new ChatMessagePresenterImpl();
-        userName = getActivity().getIntent().getStringExtra("username");
+        user = NetworkConstants.INSTANCE
+                .getGson()
+                .fromJson((String)getActivity()
+                        .getIntent()
+                        .getExtras()
+                        .get("credentials"), User.class);
+
         setList();
     }
 
@@ -67,19 +73,15 @@ public class ChatFragment extends Fragment {
 
     @OnClick(R.id.chat_send_button)
     void sendMessageOnClick(){
-        Intent currentIntent = getActivity().getIntent();
         String message = mMessageBodyText.getText().toString();
-        User user = NetworkConstants.INSTANCE
-                .getGson()
-                .fromJson((String)currentIntent.getExtras().get("credentials"),User.class);
-
-        presenter.sendMessage(user.getUserName(),message,user.getAvatar());
+        Log.i("USERNAME",user.getUserName());
+        presenter.sendMessage(user.getUserName(), message, user.getAvatar());
         mMessageBodyText.setText("");
         mChatRecyclerView.scrollToPosition(mChatRecyclerView.getBottom());
     }
 
     private void setList(){
-        adapter = new MessageRecyclerAdapter(userName);
+        adapter = new MessageRecyclerAdapter(user.getUserName());
         adapter.request();
         mChatRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mChatRecyclerView.setHasFixedSize(true);

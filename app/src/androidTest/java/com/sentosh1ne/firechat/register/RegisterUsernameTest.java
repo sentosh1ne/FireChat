@@ -32,15 +32,9 @@ public class RegisterUsernameTest {
 
     private RegisterActivity activity;
 
-    @BindView(R.id.reg_username_edit_text)
-    private EditText nameInput;
-    @BindView(R.id.continue_button)
-    private Button continueButton;
-
     @Before
     public void setUp() throws Exception {
         activity = rule.getActivity();
-        ButterKnife.bind(this,activity);
     }
 
     @Test
