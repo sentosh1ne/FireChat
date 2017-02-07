@@ -1,5 +1,7 @@
 package com.sentosh1ne.firechat.chat.interactor;
 
+import android.util.Log;
+
 import com.firebase.client.Firebase;
 import com.sentosh1ne.firechat.chat.presenter.ChatMessagePresenter;
 import com.sentosh1ne.firechat.util.NetworkConstants;

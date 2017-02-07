@@ -24,8 +24,7 @@ public class MessageInteractor {
     private final MessagePresenter presenter;
     private final Firebase mMessagesRef = new Firebase(NetworkConstants.INSTANCE.getFirebaseMessages());
     private final Query mMessageQuery;
-    private final Gson gson = NetworkConstants.INSTANCE.getGson();
-
+    private Gson gson = NetworkConstants.INSTANCE.getGson();
     public MessageInteractor(MessagePresenter presenter) {
         this.presenter = presenter;
         this.mMessageQuery = mMessagesRef.orderByValue().limitToLast(100);
@@ -36,7 +35,7 @@ public class MessageInteractor {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Log.i("MESSAGE", dataSnapshot.getValue().toString());
-                presenter.sendMessageToAdapter(gson.fromJson(dataSnapshot.getValue().toString(),Message.class));
+                presenter.sendMessageToAdapter(dataSnapshot.getValue(Message.class));
             }
 
             @Override

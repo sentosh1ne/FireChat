@@ -32,7 +32,7 @@ public class UniqueUserInteractorImpl implements UniqueUserInteractor {
                 boolean exists = false;
                 for (DataSnapshot snap : dataSnapshot.getChildren()){
                     User user = snap.getValue(User.class);
-                    if (user.getUserName().equals(userName)){
+                    if (user.getUsername().equals(userName)){
                         exists = true;
                         mPresenter.onExists();
                     } if (exists) break;

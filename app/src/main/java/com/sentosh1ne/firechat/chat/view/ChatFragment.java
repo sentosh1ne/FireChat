@@ -1,6 +1,5 @@
 package com.sentosh1ne.firechat.chat.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -66,6 +65,7 @@ public class ChatFragment extends Fragment {
                         .getExtras()
                         .get("credentials"), User.class);
 
+        Log.i("USERNAME",user.toString());
         setList();
     }
 
@@ -74,14 +74,14 @@ public class ChatFragment extends Fragment {
     @OnClick(R.id.chat_send_button)
     void sendMessageOnClick(){
         String message = mMessageBodyText.getText().toString();
-        Log.i("USERNAME",user.getUserName());
-        presenter.sendMessage(user.getUserName(), message, user.getAvatar());
+
+        presenter.sendMessage(user.getUsername(), message, user.getAvatar());
         mMessageBodyText.setText("");
         mChatRecyclerView.scrollToPosition(mChatRecyclerView.getBottom());
     }
 
     private void setList(){
-        adapter = new MessageRecyclerAdapter(user.getUserName());
+        adapter = new MessageRecyclerAdapter(user.getUsername());
         adapter.request();
         mChatRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mChatRecyclerView.setHasFixedSize(true);

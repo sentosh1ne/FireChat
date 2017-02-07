@@ -11,6 +11,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.sentosh1ne.firechat.login.presenter.LoginPresenter;
 import com.sentosh1ne.firechat.util.NetworkConstants;
 
@@ -45,11 +46,13 @@ public class LoginInteractorImpl implements LoginInteractor {
 
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            Log.i("SNAPSHOT",dataSnapshot.toString());
                             User user = NetworkConstants.INSTANCE.getGson().fromJson(dataSnapshot.getValue().toString(),User.class);
-                            Firebase loggedUser = new Firebase(NetworkConstants.INSTANCE.getFireBaseURL() + firebaseAuth.getCurrentUser().getUid());
-                            loggedUser.setValue(createUser(user.getUserName(), user.getAvatar()));
-                            mPresenter.onSuccess(firebaseAuth.getCurrentUser().getUid(), user.getUserName(), user.getAvatar());
+                            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                            Log.i("ITISMYID", firebaseUser.getUid());
+                            Log.i("ITISMYID", user.toString());
+                            Firebase loggedUser = new Firebase(NetworkConstants.INSTANCE.getFireBaseURL() + firebaseUser.getUid());
+                            loggedUser.setValue(createUser(user.getUsername(), user.getAvatar()));
+                            mPresenter.onSuccess(firebaseUser.getUid(), user.getUsername(), user.getAvatar());
                         }
 
                         @Override
@@ -68,6 +71,7 @@ public class LoginInteractorImpl implements LoginInteractor {
         Map<String, Object> userToCreate = new HashMap<>();
         userToCreate.put("username", user);
         userToCreate.put("avatar", avatar);
+        Log.i("TESTMAP", userToCreate.get("username").toString());
         return userToCreate;
     }
 
