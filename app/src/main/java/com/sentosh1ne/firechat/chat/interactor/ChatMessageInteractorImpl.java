@@ -1,6 +1,7 @@
 package com.sentosh1ne.firechat.chat.interactor;
 
 import com.firebase.client.Firebase;
+import com.sentosh1ne.firechat.chat.presenter.ChatMessagePresenter;
 import com.sentosh1ne.firechat.util.NetworkConstants;
 
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import java.util.Map;
  */
 
 public class ChatMessageInteractorImpl implements ChatMessageInteractor {
+
     @Override
     public void push(String author, String message, String avatar) {
         Firebase firebase = new Firebase(NetworkConstants.INSTANCE.getFirebaseMessages());

@@ -3,7 +3,6 @@ package com.sentosh1ne.firechat.login.interactor;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -12,8 +11,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.kelvinapps.rxfirebase.RxFirebaseAuth;
 import com.sentosh1ne.firechat.login.presenter.LoginPresenter;
 import com.sentosh1ne.firechat.util.NetworkConstants;
 
@@ -45,9 +42,11 @@ public class LoginInteractorImpl implements LoginInteractor {
                             NetworkConstants.INSTANCE.getFireBaseURL() +
                                     "users/" + firebaseAuth.getCurrentUser().getUid());
                     mFirebase.addListenerForSingleValueEvent(new ValueEventListener() {
+
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            User user = dataSnapshot.getValue(User.class);
+                            Log.i("SNAPSHOT",dataSnapshot.toString());
+                            User user = NetworkConstants.INSTANCE.getGson().fromJson(dataSnapshot.getValue().toString(),User.class);
                             Firebase loggedUser = new Firebase(NetworkConstants.INSTANCE.getFireBaseURL() + firebaseAuth.getCurrentUser().getUid());
                             loggedUser.setValue(createUser(user.getUserName(), user.getAvatar()));
                             mPresenter.onSuccess(user.getUserName(), firebaseAuth.getCurrentUser().getUid(), user.getAvatar());
@@ -55,7 +54,6 @@ public class LoginInteractorImpl implements LoginInteractor {
 
                         @Override
                         public void onCancelled(FirebaseError firebaseError) {
-                            Log.i("FIREBASE",firebaseError.getMessage());
                             mPresenter.onFailed();
                         }
                     });

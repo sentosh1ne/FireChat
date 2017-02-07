@@ -5,11 +5,14 @@ package com.sentosh1ne.firechat.adapters.chat;
  */
 
 
+import android.util.Log;
+
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
+import com.google.gson.Gson;
 import com.sentosh1ne.firechat.util.NetworkConstants;
 
 import pojos.Message;
@@ -21,7 +24,7 @@ public class MessageInteractor {
     private final MessagePresenter presenter;
     private final Firebase mMessagesRef = new Firebase(NetworkConstants.INSTANCE.getFirebaseMessages());
     private final Query mMessageQuery;
-
+    private final Gson gson = NetworkConstants.INSTANCE.getGson();
 
     public MessageInteractor(MessagePresenter presenter) {
         this.presenter = presenter;
@@ -32,7 +35,7 @@ public class MessageInteractor {
         mMessageQuery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                presenter.sendMessageToAdapter(dataSnapshot.getValue(Message.class));
+                presenter.sendMessageToAdapter(gson.fromJson(dataSnapshot.getValue().toString(),Message.class));
             }
 
             @Override

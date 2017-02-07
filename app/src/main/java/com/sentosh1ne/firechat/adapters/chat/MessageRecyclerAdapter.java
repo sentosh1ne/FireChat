@@ -24,7 +24,7 @@ import pojos.Message;
  * Created by Filip on 27/02/2016.
  */
 public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecyclerAdapter.ViewHolder> implements MessageAdapterView {
-        private final ArrayList<Message> mMessageList = new ArrayList<>();
+    private final ArrayList<Message> mMessageList = new ArrayList<>();
     private final String user;
     private final MessagePresenter presenter;
 

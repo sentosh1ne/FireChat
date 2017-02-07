@@ -24,8 +24,9 @@ public class UserListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ButterKnife.bind(this,container);
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_chat_users, container, false);
+        ButterKnife.bind(this,view);
+        return view;
     }
 
     @Override
