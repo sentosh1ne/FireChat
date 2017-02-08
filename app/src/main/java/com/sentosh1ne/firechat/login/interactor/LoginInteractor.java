@@ -9,5 +9,5 @@ import java.util.Map;
 public interface LoginInteractor {
     void loginWithEmail(String email,String password);
 
-    Map<String,Object> createUser(String user, String avatar);
+    Map<String,Object> createUser(String user, String avatar, String uid);
 }

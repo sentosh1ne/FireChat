@@ -41,7 +41,7 @@ public class LoginInteractorImpl implements LoginInteractor {
 
 
     @Override
-    public Map<String, Object> createUser(String user, String avatar) {
+    public Map<String, Object> createUser(String user, String avatar, String uid) {
         Map<String, Object> userToCreate = new HashMap<>();
         userToCreate.put("username", user);
         userToCreate.put("avatar", avatar);
@@ -49,13 +49,11 @@ public class LoginInteractorImpl implements LoginInteractor {
     }
 
     private OnCompleteListener<AuthResult> createOnCompleteListener() {
-      return  new OnCompleteListener<AuthResult>() {
+      return new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    mFirebase = new Firebase(
-                            NetworkConstants.INSTANCE.getFireBaseURL() +
-                                    "users/" + firebaseAuth.getCurrentUser().getUid());
+                    mFirebase = new Firebase(NetworkConstants.INSTANCE.getFireBaseUsers() + firebaseAuth.getCurrentUser().getUid());
                     mFirebase.addListenerForSingleValueEvent(createValueEventListener());
                 }
             }
@@ -71,7 +69,7 @@ public class LoginInteractorImpl implements LoginInteractor {
                         .fromJson(dataSnapshot.getValue().toString(), User.class);
 
                 Firebase loggedUser = new Firebase(NetworkConstants.INSTANCE.getFireBaseURL() + user.getUid());
-                loggedUser.setValue(createUser(user.getUsername(), user.getAvatar()));
+                loggedUser.setValue(createUser(user.getUsername(), user.getAvatar(), user.getUid()));
                 mPresenter.onSuccess(user.getUid(), user.getUsername(), user.getAvatar());
             }
 
